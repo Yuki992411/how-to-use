@@ -70,3 +70,36 @@ $ git config --global core.excludesfile ~/.gitignore_global
 ```
 $ git config --global core.autocrlf prop
 ```
+<br/>
+
+# 2. 開発中のコマンド
+
+* リポジトリの作成
+```
+$ git init
+```
+
+* リポジトリの作成（ワーキングディレクトリなし）
+-> 中央リポジトリに保存するときとか
+```
+$ git --bare init
+$ git --bare init --shared (グループ内のアクセス可)
+```
+
+* 中央リポジトリから複製
+```
+$ git clone https://github.com/hoge/foo.git
+```
+
+* 基本操作
+```
+$ git add . (ステージング)
+$ git mv hoge.txt (ファイルの移動・改名)
+$ git rm hoge.txt (ファイルを追跡外にし，削除)
+$ git commit commit (コミット)
+```
+
+* 中央リポジトリの更新
+```
+git push 名前 ブランチ
+```
