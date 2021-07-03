@@ -103,3 +103,16 @@ $ git commit commit (コミット)
 ```
 git push 名前 ブランチ
 ```
+
+* タグ
+```
+$ git tag hoge
+$ git tag (タグの一覧表示)
+$ git tag -d hoge
+```
+
+* 一括編集 `git filter-branch`
+  - (一括で)コミットログのAuthorとCommitを変えるとき
+  ```
+  $ git filter-branch -f --env-filter "GIT_AUTHOR_NAME='new_name'; GIT_AUTHOR_EMAIL='new_mail'; GIT_COMMITTER_NAME='new_name'; GIT_COMMITTER_EMAIL='new_mail';" HEAD
+  ```
