@@ -57,6 +57,14 @@ $ git config --global commit.template ~/.gitmessage.txt
 $ git config --global core.excludesfile ~/.gitignore_global
 ```
 
+#### ※`.gitignore`について．
+  - `#` : その行をコメントとして処理
+  - `hoge.txt` : <b>ディレクトリに関係なく</b>，そのファイルを無視．
+  - `/hoge.txt` : .gitignoreのディレクトリにそのファイルがあれば，無視．
+  - `build/` : そのディレクトリ以下をすべて無視．
+  - `*` : ワイルドカードも使用できる
+  - Learn more? → https://github.com/github/gitignore
+
 * CR LFの処理（自動変換）
 
   | prop | checkout（取り込み） | commit
