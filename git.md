@@ -97,7 +97,8 @@ $ git pull (git fetch と git mergeのコンボ)
 $ git add . (ステージング)
 $ git mv hoge.txt (ファイルの移動・改名)
 $ git rm hoge.txt (ファイルを追跡外にし，削除)
-$ git commit commit (コミット)
+$ git commit -m "コミットのメッセージ" (コミット)
+$ git commit --amend (最後のコミットに変更分を追加してくれる.コミットした時間は前回のまま．)
 ```
 
 * 中央リポジトリの更新
@@ -111,6 +112,38 @@ $ git tag hoge
 $ git tag (タグの一覧表示)
 $ git tag -d hoge
 ```
+
+* コミットの操作
+```
+$ git merge hoge (今いるブランチにhogeブランチを統合→枝分かれが残る)
+$ git rebase hoge (今いるブランチにhogeブランチを統合ジ→枝分かれした記録は消える)
+$ git rebase -i コミットid (インタラクティブ「対話的」なリベース)
+  -- リベース中に使うコマンド --
+    $ git rebase --continue (次のリベースに進む)
+    $ git rebase --skip (エラーが出ても，次に進む)
+    $ git rebase --abort (リベースを中断．今までのリベースは破棄．)
+$ git cherry-pick コミットid (そのコミットを持ってくる．なにかあれば， --abortで中断可能)
+$ git reset コミットid (これより最新のコミットは削除, "cherry-pick"で回収可能)
+```
+  - 例（以前のコミットを分割）
+  ```
+  $ git checkout コミットId
+  $ git reset --soft HEAD~ (直前のコミットをなくし，ステージングされた状態にする)
+  $ git restore --staged ファイル (ステージングから削除)
+   git add, commit (コミットを再度行なう)
+  $ git rebase --contnue
+  ```
+
+#### ※`git rebase -i コミットid`において．
+  - `r (reword)` : コミットメッセージを変える→<b> コミットした時間は変更前と同じ</b>
+  - `e (edit)` : コミット内容を変える→<b> コミットした時間も変わる</b>
+  - `s (squash)` : コミットをまとめる(最新→過去へたどり,`pick`が現れればそのコミットIdに全てまとめる．)
+  - `p (pick)` : なにもしない
+
+#### ※`git reset オプション コミットid`のオプションにおいて．
+  - `--Hard` : ファイルの変更も全て削除
+  - `--Soft` : ファイルの変更はステージングされている
+  - `--Mixed` : ファイルの変更はステージングされていないが，アンステージングとして残されている(オプションなしの場合，コレ)
 
 * 一括編集 `git filter-branch`
   - (一括で)コミットログのAuthorとCommitを変えるとき
