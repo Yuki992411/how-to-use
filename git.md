@@ -89,6 +89,7 @@ $ git --bare init --shared (グループ内のアクセス可)
 * 中央リポジトリから複製
 ```
 $ git clone https://github.com/hoge/foo.git
+$ git pull (git fetch と git mergeのコンボ)
 ```
 
 * 基本操作
@@ -101,7 +102,7 @@ $ git commit commit (コミット)
 
 * 中央リポジトリの更新
 ```
-git push 名前 ブランチ
+$ git push リポジトリ名 ブランチ
 ```
 
 * タグ
